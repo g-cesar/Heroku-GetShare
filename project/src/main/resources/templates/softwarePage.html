@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ef476f">
+    <title>Get&Share</title>
+    <meta name="description" content="Una guida interattiva per muovere i primi passi su Brackets.">
+    <!-- UIkit CSS -->
+    <!--<link rel="stylesheet" href="css/uikit.min.css"/> -->
+    <link type="text/css" rel="stylesheet" href="../css/uikit.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <link type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- UIkit JS -->
+    <script type="text/javascript" src="../js/uikit.min.js"></script>
+    <script type="text/javascript" src="../js/uikit-icons.min.js"></script>
+</head>
+<body>
+    <nav th:replace="navFragment.html :: navbar"></nav>
+
+    <div class="mobile">
+        <button class="uk-button"><a uk-icon="icon: more; ratio: 1.5" href="#scroll" uk-scroll="el: scroll;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: info; ratio: 1.5" href="#scroll2" uk-scroll="el: scroll2;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: question; ratio: 1.5" href="#scroll3" uk-scroll="el: scroll3;"></a></button>
+    </div>
+
+    <div style="width: 80%; margin: auto; margin-top: 50px;">
+        <h1 th:text="${Software.name}"></h1>
+        <p th:text="'Product description: ' + ${Software.description}"></p>
+        <p th:text="'Published on: ' + ${Software.publish}"></p>
+        <p th:text="'Developed by: ' + ${Software.softwarehouse.name}"></p>
+        <p th:text="'Uploaded by: ' + ${Software.user.firstName}"></p>
+        <p th:text="'Size (GB): ' + ${Software.size}"></p>
+        <p th:text="'Version: ' + ${Software.version}"></p>
+        <span th:if="${Software.price!=0.0}" class="uk-label uk-label-default" style="border-radius: 30px;" th:text="'€ ' + ${Software.price}">€ 19.99</span>
+        <span th:if="${Software.price==0.0}" class="uk-label uk-label-default" style="border-radius: 30px; background-color: green;" th:text="FREE">€ 19.99</span>
+    </div>
+
+</body>

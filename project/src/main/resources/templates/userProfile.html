@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ef476f">
+    <title>Get&Share</title>
+    <meta name="description" content="Una guida interattiva per muovere i primi passi su Brackets.">
+    <!-- UIkit CSS -->
+    <!--<link rel="stylesheet" href="css/uikit.min.css"/> -->
+    <link type="text/css" rel="stylesheet" href="css/uikit.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- UIkit JS -->
+    <script type="text/javascript" src="js/uikit.min.js"></script>
+    <script type="text/javascript" src="js/uikit-icons.min.js"></script>
+</head>
+<body>
+    <nav th:replace="navFragment.html :: navbar"></nav>
+
+    <div class="mobile">
+        <button class="uk-button"><a uk-icon="icon: more; ratio: 1.5" href="#scroll" uk-scroll="el: scroll;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: info; ratio: 1.5" href="#scroll2" uk-scroll="el: scroll2;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: question; ratio: 1.5" href="#scroll3" uk-scroll="el: scroll3;"></a></button>
+    </div>
+
+    <div style="width: 80%; margin: auto; margin-top: 50px;">
+        <h1 th:text="'Welcome, ' + ${loggedUser.firstName} + ' ' + ${loggedUser.lastName} + '!'"></h1>
+        <p th:text="'Your role is set to: ' + ${loggedCredentials.role}"></p>
+        <p th:text="'Date of birth: ' + ${loggedUser.DOB}"></p>
+        <h3>Registration data</h3>
+        <p th:text="'Your first time here was: ' + ${loggedUser.registrationDate}"></p>
+        <p th:text="'Email: ' + ${loggedCredentials.email}"></p>
+        <h3>Your software</h3>
+        <div style="width: 80%; height: auto; margin: auto; top: 20%; left: 0; right: 0; bottom: 0; display:flex; flex-wrap: wrap; text-align: center;">
+            <div style="padding: 20px;" th:each="softwareS:${listaSoftware}">
+                <a href="#">
+                    <div class="uk-card uk-card-default uk-card-hover uk-grid-margin softwareCard" th:if="${loggedUser.id==softwareS.user.id}">
+                        
+                        <div class="uk-card-media-top">
+                            <img src="https://picsum.photos/125/150" style="border-radius: 30px 30px 0 0;">
+                            <div class="uk-overlay uk-overlay-default uk-position-top platforms">
+                                <div style="padding-top: 18.75px; padding-bottom: 18.75;"><a href="#" uk-icon="icon: pencil" th:data-id="${softwareS.id}" th:onclick="document.getElementById('updateSoftware[[${softwareS.id}]]').style.display='block'"></a></div>
+                                <div style="padding-top: 18.75px; padding-bottom: 18.75;"><a href="#" uk-icon="icon: trash" th:data-id="${softwareS.id}" th:onclick="document.getElementById('deleteSoftware[[${softwareS.id}]]').style.display='block'"></a></div>
+                            </div>
+                        </div>
+                        <div style="padding: 5px;">
+                            <h6 style="margin-bottom: 5px;" th:text=${softwareS.name}>Software Title</h6>
+                            <span th:if="${softwareS.price!=0.0}" class="uk-label uk-label-default" style="border-radius: 30px;" th:text="'€ ' + ${softwareS.price}">€ 19.99</span>
+                            <span th:if="${softwareS.price==0.0}" class="uk-label uk-label-default" style="border-radius: 30px; background-color: green;" th:text="FREE">€ 19.99</span>
+                        </div>
+                    </div>
+                </a>
+                <div th:id="'deleteSoftware' + ${softwareS.id}" style="z-index: 1003;" class="w3-modal">
+                    <div class="w3-modal-content" style="top: 30%;">
+                        <span th:data-id="${softwareS.id}" th:onclick="document.getElementById('deleteSoftware[[${softwareS.id}]]').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h2 class="uk-modal-title uk-text-center" style="color: #ef476f;">Delete Software</h2>
+                        <p style="text-align: center;font-size: medium;font-family: 'quicksandlight';color: black;" th:text="'Do you really want to delete ' + ${softwareS.name} + '?'">Do you really want to delete this software?</p>
+                        <hr class="uk-divider-icon">
+                        <form th:action="@{'/delete/{id}'(id=${softwareS.id})}" method="post">
+                            <div class="uk-column-1-2">
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <button type="submit" class="uk-button uk-button-danger uk-align-center">Yes</button>
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <button class="uk-button uk-button-danger uk-align-center">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div th:id="'updateSoftware' + ${softwareS.id}" style="z-index: 1003;" class="w3-modal">
+                    <div class="w3-modal-content" style="top: 30%;">
+                        <span th:data-id="${softwareS.id}" th:onclick="document.getElementById('updateSoftware[[${softwareS.id}]]').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h2 class="uk-modal-title uk-text-center" style="color: #ef476f;">Update Software</h2>
+                        <hr class="uk-divider-icon">
+                        <form th:action="@{@{'/update/{id}'(id=${softwareS.id})}}" th:object="${Software1}" method="post">
+                            <div class="uk-column-1-2">
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: home"></span>
+                                        <input class="uk-input" type="text" placeholder="Name" th:value="${softwareS.name}" th:field="*{name}">
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+                                        <input class="uk-input" type="text" placeholder="Description" th:value="${softwareS.description}" th:field="*{description}">
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                                        <input class="uk-input" type="date" placeholder="Foundation date" th:value="${softwareS.publish}" th:field="*{publish}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: credit-card"></span>
+                                        <input class="uk-input" type="number" step="any" placeholder="Price" th:value="${softwareS.price}" th:field="*{price}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: database"></span>
+                                        <input class="uk-input" type="number" placeholder="Size" th:value="${softwareS.size}" th:field="*{size}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <span class="uk-form-icon" uk-icon="icon: info"></span>
+                                        <input class="uk-input" type="number" placeholder="Version" th:value="${softwareS.version}" th:field="*{version}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <select class="uk-select" th:field="*{softwarehouse.id}">
+                                            <option th:value="${softwareS.softwarehouse.id}" th:text="${softwareS.softwarehouse.name}"></option>
+                                            <option th:value="${softwareH.id}" th:each="softwareH:${listaSoftwareHouse}" th:text="${softwareH.name}">Option 01</option>
+                                        </select>              
+                                    </div>
+                                </div>
+                                <div class="uk-margin uk-text-center">
+                                    <div class="uk-inline">
+                                        <button type="submit" class="uk-button uk-button-danger uk-align-center">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${loggedCredentials.role=='ADMIN'}">
+            <h3>Manage users</h3>
+            <form th:action="@{/manageUser}" method="get">
+                <p>Inserisci l'id dell'utente che vuoi eliminare: </p>
+                <input class="uk-input" type="text" placeholder="E-mail" id="email" name="email">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

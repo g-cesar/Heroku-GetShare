@@ -1,0 +1,375 @@
+@font-face {
+    font-family: 'quicksandlight';
+    src: url('quicksand-variablefont_wght-webfont.woff2') format('woff2'),
+         url('quicksand-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@media only screen and (max-width: 600px) {
+    nav ul {
+      display: none;
+    }
+
+    #buttonBox{
+        border: 2px solid #fff;
+        border-radius: 50px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.3) 50%, transparent 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
+        transition: all .3s ease-out;
+    }
+    
+    .buttonText:hover{
+        color: #ef476f;
+    }
+    
+    #buttonBox:hover{
+        background-position: left bottom;
+    }
+}
+
+@media only screen and (min-width: 601px){
+    .mobile{
+        display: none;
+    }
+}
+
+.error{
+	color: #ef476f;
+}
+
+.hideScrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.paddingCard{
+    padding: 20px;
+}
+
+.softwareHouseCard{
+    flex: 0 0 auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.descriptionHover:hover{
+    opacity: 1;
+}
+
+.descriptionHover{
+    opacity: 0;
+    transition: opacity .5s;
+    border-radius: 35px 35px 35px 35px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.platforms:hover{
+    opacity: 1;
+}
+
+.platforms{
+    opacity: 0;
+    transition: opacity .5s;
+    border-radius: 30px 30px 0 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.numberItem{
+    font-size: small;
+    color: #ef476f;
+}
+
+.numberItem::before{
+    content: '(';
+    color: #a4243b;
+}
+
+.numberItem::after{
+    content: ')';
+    color: #a4243b;
+}
+
+.mobile{
+    z-index: 1002;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    text-align: center;
+}
+
+.mobile a{
+    color: white;
+}
+
+.mobile a:hover{
+    color: #333;
+    opacity: 40%;
+}
+
+.mobile .uk-button{
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 45px 0px rgba(0,0,0,0.5);
+    background-color: #ef476f;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 50px;
+    line-height: 0px;
+}
+
+
+.uk-input:hover{
+    color: #ef476f;
+}
+
+.uk-input:focus{
+    border-color: #ef476f;
+}
+
+.uk-modal .uk-open{
+    z-index: 100001;
+}
+
+.uk-card-default{
+    border-radius: 35px;
+    transition: transform .1s ease-in-out;
+}
+.uk-card-default:hover{
+    transform: scale(1.02);
+}
+
+.softwareTitle{
+    font-family: 'quicksandlight';
+    font-style: normal;
+    font-weight: bold;
+    color: #a4243b;
+}
+
+.description{
+    font-family: 'quicksandlight';
+    font-style: normal;
+    font-weight: normal;
+    font-size: small;
+    color: #273932;
+}
+
+nav{
+    padding-top: 43px;
+}
+
+.navUL{
+    list-style-type: none;
+    float: right;
+}
+
+nav ul li {
+    float: left;
+}
+nav ul li a {
+    color: #000;
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+    font-size: 2em;
+}
+
+.margineIcona{
+    margin-right: 10px;
+}
+
+#logo {
+    color: #fff;
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+    font-size: 3em;
+}
+
+h1, h4{
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+}
+
+p{
+    color: #fff;
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+    font-size: large;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.whiteBackground{
+    background-color: white;
+    margin: 0;
+}
+
+.paragrafoIndex{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.detailsTitle{
+    padding-top: 30px;
+}
+
+.uk-first-column{
+    padding-left: 0px;
+}
+
+.uk-card{
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+}
+
+.uk-card-title{
+    font-weight: bold;
+}
+
+.uk-label-success{
+    background-color: green;
+}
+
+html{
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background-image: url(images/background.svg);
+    background-size: cover;
+}
+
+.uk-link-toggle:focus .uk-link, .uk-link-toggle:hover .uk-link, .uk-link:hover, a:hover {
+    color: #ef476f;
+    text-decoration: blink;
+}
+
+.uk-animation-toggle{
+    width: fit-content;
+    margin: auto;
+}
+
+.uk-button{
+    border: 2px solid #ef476f;
+    border-radius: 50px;
+    background: linear-gradient(to right, #ef476f 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .3s ease-out;
+    font-family: 'quicksandlight';
+    font-weight:normal;
+    font-style:normal;
+}
+
+.buttonText{
+    color: white;
+}
+
+.buttonText:hover{
+    color: white;
+}
+
+.uk-button:hover{
+    background-position: left bottom;
+}
+
+.loginLink{
+    color: #333;
+}
+
+.loginLink:hover{
+    color: #fff;
+}
+
+.waveAnim{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+}
+
+div .wave {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(images/wave.png);
+    background-size: 1000px 100px;
+}
+
+div .wave.wave1 {
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 100px;
+}
+
+div .wave.wave2 {
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 110px;
+}
+
+div .wave.wave3 {
+    animation: animate2 15s linear infinite;
+    z-index: 998;
+    opacity: 0.2;
+    animation-delay: -2s;
+    bottom: 115px;
+}
+
+div .wave.wave4 {
+    animation: animate2 5s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -2s;
+    bottom: 120px;
+}
+
+@keyframes animate {
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: 1000px;
+    }
+}
+
+@keyframes animate2 {
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: -1000px;
+    }
+}

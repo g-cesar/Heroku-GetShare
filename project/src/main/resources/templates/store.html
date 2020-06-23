@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#ef476f">
+        <title>Get&Share</title>
+        <meta name="description" content="Una guida interattiva per muovere i primi passi su Brackets.">
+        
+        
+        <!-- UIkit CSS -->
+        <!--<link rel="stylesheet" href="css/uikit.min.css"/> -->
+        <link type="text/css" rel="stylesheet" href="css/uikit.min.css"/>
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <link type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <!-- UIkit JS -->
+        <script type="text/javascript" src="js/uikit.min.js"></script>
+        <script type="text/javascript" src="js/uikit-icons.min.js"></script>        
+    </head>
+<body>
+    <nav th:replace="navFragment.html :: navbar"></nav>
+
+    <div class="mobile">
+        <button class="uk-button"><a uk-icon="icon: more; ratio: 1.5" href="#scroll" uk-scroll="el: scroll;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: info; ratio: 1.5" href="#scroll2" uk-scroll="el: scroll2;"></a></button>
+        <button class="uk-button"><a uk-icon="icon: question; ratio: 1.5" href="#scroll3" uk-scroll="el: scroll3;"></a></button>
+    </div>
+    
+<div id="modal-close-outside-sh" style="z-index: 1003;" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body" style="top: 30%;">
+        <button class="uk-modal-close-outside" type="button" uk-close></button>
+        <h2 class="uk-modal-title uk-text-center" style="color: #ef476f;">Register Software House</h2>
+        <hr class="uk-divider-icon">
+        <form th:action="@{/store}" th:object="${SoftwareHouse}" method="post">
+            <div class="uk-column-1-2">
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: home"></span>
+                        <input class="uk-input" type="text" placeholder="Name" th:field="*{name}">
+                        <div class="error" th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+                        <input class="uk-input" type="text" placeholder="Description" th:field="*{description}">
+                         <div class="error" th:if="*{#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                        <input class="uk-input" type="date" placeholder="Foundation date" th:field="*{foundation}">
+                         <div class="error" th:if="*{#fields.hasErrors('foundation')}" th:errors="*{foundation}"></div>
+                        
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <button type="submit" class="uk-button uk-button-danger uk-align-center">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="modal-close-outside-s" style="z-index: 1003;" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body" style="top: 30%;">
+        <button class="uk-modal-close-outside" type="button" uk-close></button>
+        <h2 class="uk-modal-title uk-text-center" style="color: #ef476f;">Insert Software</h2>
+        <hr class="uk-divider-icon">
+        <form th:action="@{/addSoftware}" th:object="${Software}" method="post">
+            <div class="uk-column-1-2">
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: home"></span>
+                        <input class="uk-input" type="text" placeholder="Name" th:field="*{name}">
+                        <div class="error" th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: file-text"></span>
+                        <input class="uk-input" type="text" placeholder="Description" th:field="*{description}">
+                         <div class="error" th:if="*{#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                        <input class="uk-input" type="date" placeholder="Foundation date" th:field="*{publish}">
+                         <div class="error" th:if="*{#fields.hasErrors('publish')}" th:errors="*{publish}"></div>
+                        
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: credit-card"></span>
+                        <input class="uk-input" type="number" step="any" placeholder="Price" th:field="*{price}">
+                         <div class="error" th:if="*{#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                        
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: database"></span>
+                        <input class="uk-input" type="number" placeholder="Size" th:field="*{size}">
+                         <div class="error" th:if="*{#fields.hasErrors('size')}" th:errors="*{size}"></div>
+                        
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: info"></span>
+                        <input class="uk-input" type="number" placeholder="Version" th:field="*{version}">
+                         <div class="error" th:if="*{#fields.hasErrors('version')}" th:errors="*{version}"></div>
+                        
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <select class="uk-select" th:field="*{softwarehouse.id}">
+                            <option th:value="''" th:text="Select..."></option>
+                            <option th:value="${softwareH.id}" th:each="softwareH:${listaSoftwareHouse}" th:text="${softwareH.name}">Option 01</option>
+                        </select>              
+                    </div>
+                </div>
+                <div class="uk-margin uk-text-center">
+                    <div class="uk-inline">
+                        <button type="submit" class="uk-button uk-button-danger uk-align-center">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="margin-left: auto; margin-right: auto; height: auto; width: auto;">
+    <div style="width: 80%; margin: auto; margin-top: 50px;">
+        <h3>Software Houses</h3>
+    </div>
+    <div class="hideScrollbar" style="width: 80%; height: auto; margin: auto; top: 20%; left: 0; right: 0; bottom: 0; display:flex; flex-wrap: nowrap; overflow-x: auto;">
+        <div th:each="softwareH:${listaSoftwareHouse}" class="paddingCard">
+            <a href="#">
+                <div class="uk-card uk-card-default uk-card-hover uk-text-center softwareHouseCard">
+                    <div class="uk-overlay uk-overlay-primary uk-position-top descriptionHover">
+                          <p th:text=${softwareH.description} style="text-align: center;font-size: small;font-family: 'quicksandlight';color: white;">Descrizione</p>  
+                    </div>
+                    <div style="padding: 5px;">
+                        <h4 style="margin-bottom: 5px; font-weight: bold;" th:text=${softwareH.name}>Software House</h4>
+                        <span class="uk-label uk-label-default" style="border-radius: 30px;" th:text=${softwareH.foundation}>Data di fondazione</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div style="width: 80%; margin: auto; margin-top: 50px;">
+        <h3>Softwares</h3>
+    </div>
+        <div style="width: 80%; height: auto; margin: auto; top: 20%; left: 0; right: 0; bottom: 0; display:flex; flex-wrap: wrap; text-align: center;">
+            <div style="padding: 20px;" th:each="softwareS:${listaSoftware}">
+                <a th:href="@{/software/{id} (id=${softwareS.id})}">
+                    <div class="uk-card uk-card-default uk-card-hover uk-grid-margin softwareCard">
+                        
+                        <div class="uk-card-media-top">
+                            <img src="https://picsum.photos/125/150" style="border-radius: 30px 30px 0 0;">
+                        </div>
+                        <div style="padding: 5px;">
+                            <h6 style="margin-bottom: 5px;" th:text=${softwareS.name}>Software Title</h6>
+                            <span th:if="${softwareS.price!=0.0}" class="uk-label uk-label-default" style="border-radius: 30px;" th:text="'€ ' + ${softwareS.price}">€ 19.99</span>
+                            <span th:if="${softwareS.price==0.0}" class="uk-label uk-label-default" style="border-radius: 30px; background-color: green;" th:text="FREE">€ 19.99</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Document</title>
+    <!-- UIkit CSS -->
+    <!--<link rel="stylesheet" href="css/uikit.min.css"/> -->
+    <link type="text/css" rel="stylesheet" href="css/uikit.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- UIkit JS -->
+    <script type="text/javascript" src="js/uikit.min.js"></script>
+    <script type="text/javascript" src="js/uikit-icons.min.js"></script>
+</head>
+<body>
+    <nav th:fragment="navbar">
+        <a class="uk-padding-large uk-padding-remove-top" href="#" id="logo">Get&Share</a>
+        <ul class="navUL">
+            <li class="uk-padding-medium uk-padding-remove-top"> <a href=""><span class="margineIcona">add</span><span uk-icon="icon:  thumbnails; ratio: 1.6"></a> </li>
+                <div uk-dropdown="mode: click">
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-nav-header" style="float: none;">New...</li>
+                        <li th:if="${loggedCredentials.role=='DEFAULT'}" style="float: none; display: none;"><a href="#" style="font-size: medium;" uk-toggle="target: #modal-close-outside-sh">Software House</a></li>
+                        <li th:if="${loggedCredentials.role=='ADMIN'}" style="float: none;"><a href="#" style="font-size: medium;" uk-toggle="target: #modal-close-outside-sh">Software House</a></li>
+                        <li style="float: none;"><a href="#" style="font-size: medium;" uk-toggle="target: #modal-close-outside-s">Software</a></li>
+                    </ul>
+                </div>
+            <li class="uk-padding-large uk-padding-remove-top"> <a href=""><span class="margineIcona">cart</span><span class="numberItem">0</span><span uk-icon="icon: cart; ratio: 1.6"></a> </li>
+            <li class="uk-padding-large uk-padding-remove-top uk-padding-remove-left"> <a href=""><span class="margineIcona">profile</span><span uk-icon="icon: user; ratio: 1.6"></span></a> </li>
+            <div uk-dropdown="mode: click">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-nav-header" style="float: none;" th:text="${loggedUser.firstName}">Username</li>
+                    <li style="float: none;"><a th:href="@{/userProfile}" style="font-size: medium;">Profile</a></li>
+                    <li style="float: none;"><a href="/logout" style="font-size: medium;">Log out</a></li>
+                    <li class="uk-nav-header" style="float: none;">Store</li>
+                    <li style="float: none;"><a href="/store" style="font-size: medium;">Open</a></li>
+                </ul>
+            </div>
+        </ul> 
+    </nav>
+</body>
+</html>
